@@ -55,7 +55,7 @@ def get_history(username):
     cursor.execute('SELECT loai, nguon, so_tien, ly_do FROM transactions WHERE username = ? ORDER BY id DESC', (username,))
     return cursor.fetchall()
 
-API_KEY = "API GEMINI HERE"
+API_KEY = "GEMINI_API_KEY"
 client = genai.Client(api_key=API_KEY)
 
 system_prompt = "Bạn là trợ lý tài chính. Người dùng nhập khoản thu/chi. Chỉ trả về dữ liệu chuẩn JSON, không bọc trong markdown. Cấu trúc: {\"loai_giao_dich\": \"chi\" hoặc \"thu\", \"nguon_tien\": \"tien_mat\" hoặc \"tien_tk\", \"so_tien\": số nguyên, \"ly_do\": \"Mô tả ngắn\"}. Nếu không hiểu, trả về: {\"error\": \"Không hiểu giao dịch\"}"
