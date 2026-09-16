@@ -20,7 +20,7 @@ async function handleAuth() {
     const endpoint = isRegisterMode ? "/api/register" : "/api/login";
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000${endpoint}`, {
+        const response = await fetch(`https://manager-money.onrender.com${endpoint}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username: user, password: pass })
@@ -59,7 +59,7 @@ async function xacNhanSoDu() {
     const initCash = parseInt(document.getElementById("init-cash").value) || 0;
     const initBank = parseInt(document.getElementById("init-bank").value) || 0;
 
-    const response = await fetch("http://127.0.0.1:8000/api/init", {
+    const response = await fetch("https://manager-money.onrender.com/api/init", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: currentUsername, tien_mat: initCash, tien_tk: initBank })
@@ -92,7 +92,7 @@ async function sendMessage() {
     chatHistory.scrollTop = chatHistory.scrollHeight;
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/api/chat", {
+        const response = await fetch("https://manager-money.onrender.com/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username: currentUsername, message: messageText })
@@ -154,8 +154,8 @@ function logout() {
     document.getElementById("auth-modal").style.display = "flex";
     document.getElementById("auth-user").value = "";
     document.getElementById("auth-pass").value = "";
-    document.getElementById("chat-history.innerHTML") = "";
-    document.getElementById("history-list.innerHTML") = "";
+    document.getElementById("chat-history").innerHTML = `<div class="message ai-msg">Chào bạn! Hãy nhập chi tiêu hôm nay.</div>`;
+    document.getElementById("history-list").innerHTML = `<p style="color: #888; font-size: 13px; text-align: center;">Chưa có giao dịch nào.</p>`;
 }
 
 function handleKeyPress(event) {
